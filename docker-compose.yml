@@ -6,17 +6,19 @@ services:
     environment:
       POSTGRES_DB: HeadHunterHub
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123123
+      POSTGRES_PASSWORD: "123123"
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d HeadHunterHub"]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+    networks:
+      - appnet
 
   app:
     build: .
@@ -26,16 +28,22 @@ services:
       - "8000:8000"
     environment:
       DB_HOST: db
+      DB_PORT: "5432"
       DB_NAME: HeadHunterHub
       DB_USER: postgres
-      DB_PASSWORD: 123123
+      DB_PASSWORD: "123123"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - .:/app
+      - .:/app:delegated
     stdin_open: true
     tty: true
+    networks:
+      - appnet
 
 volumes:
   postgres_data:
+
+networks:
+  appnet:

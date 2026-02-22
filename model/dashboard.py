@@ -1,37 +1,33 @@
 from fastapi import FastAPI
-import psycopg2
 from model.db import get_db_connection
 
 app = FastAPI()
+
 
 class GetDashboard:
     @classmethod
     def get_dashboard(cls):
         conn = None
+        cur = None
         try:
             conn = get_db_connection()
             cur = conn.cursor()
 
-            # vacancies
-            cur.execute("select count(*) from vacancies;")
+            cur.execute("SELECT count(*) FROM vacancies;")
             vacancies = cur.fetchone()[0]
 
-            # skills
-            cur.execute("select count(*) from skills")
+            cur.execute("SELECT count(*) FROM skills;")
             skills = cur.fetchone()[0]
 
-            # companies
-            cur.execute("select count(distinct employer) from vacancies;")
+            cur.execute("SELECT count(DISTINCT employer) FROM vacancies;")
             companies = cur.fetchone()[0]
 
-            # users
-            cur.execute("select count(*) from users;")
+            cur.execute("SELECT count(*) FROM users;")
             users = cur.fetchone()[0]
 
-            # vacancy per company ratio
-            ratio = round(vacancies / companies, 1)
+            ratio = round(vacancies / companies, 1) if companies else 0
 
-            dashboard = {
+            return {
                 "vacancies": vacancies,
                 "skills": skills,
                 "companies": companies,
@@ -40,18 +36,16 @@ class GetDashboard:
             }
 
         except Exception as e:
-            dashboard = {
+            print(f"Dashboard DB Error: {type(e).__name__}: {e}")
+            return {
                 "vacancies": "err",
                 "skills": "err",
                 "companies": "err",
                 "users": "err",
                 "ratio": "err"
             }
-
         finally:
             if cur:
                 cur.close()
             if conn:
                 conn.close()
-
-            return dashboard

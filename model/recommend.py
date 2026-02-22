@@ -15,7 +15,9 @@ class RecommendSystem:
         if selected_profile not in ["data-analyst", "web"]:
             selected_profile = "data-analyst"
 
-        DATABASE_URL = "postgresql+psycopg2://postgres:123123@localhost:5432/HeadHunterHub"
+        
+
+        DATABASE_URL = "postgresql+psycopg2://postgres:123123@db:5432/HeadHunterHub"
         engine = create_engine(DATABASE_URL)
 
         conn = get_db_connection()
@@ -43,7 +45,7 @@ class RecommendSystem:
         df.dropna(how="any",inplace=True)
         df.reset_index(drop=True,inplace=True)
 
-        model = SentenceTransformer("/app/models/all-MiniLM-L6-v2")
+        model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
         skill_embeddings=model.encode(df['skills_str'].tolist(),batch_size=6,show_progress_bar=True,normalize_embeddings=True)
 

@@ -32,7 +32,7 @@ class Profile:
             dbname='HeadHunterHub',
             user='postgres',
             password='123123',
-            host='localhost',
+            host='db',
             port='5432'
         )
         cur = conn.cursor()
@@ -53,7 +53,7 @@ class Profile:
             dbname='HeadHunterHub',
             user='postgres',
             password='123123',
-            host='localhost',
+            host='db',
             port='5432'
         )
         cur = conn.cursor()

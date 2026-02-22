@@ -6,7 +6,7 @@ role_title varchar(60)
 create table users (
 user_id serial primary key,
 user_name varchar(18) unique,
-user_password varchar(60)
+user_password varchar(60),
 business_role bigint references businessroles(role_id),
 created_at date default current_date
 );
