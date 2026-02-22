@@ -8,6 +8,11 @@
 git clone https://github.com/Gustavs3n22/JobSeeker-App.git
 ```
 
+Перейдите в директорию проекта
+```
+cd JobSeeker-App
+```
+
 Запустите проект
 ```
 docker compose up --build
