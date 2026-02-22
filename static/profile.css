@@ -1,0 +1,125 @@
+body {
+    display: grid;
+    padding: 16px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+/* PROPOSED CHIPS */
+.chip_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border-radius: 6px;
+    background-color: #fafafa;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.chip {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+    width: fit-content;
+}
+
+.chip:hover {
+    background-color: #cdcdcd;
+}
+
+.chip-selected {
+    background-color: #42e17a;
+    color: #bab4b4;
+}
+
+.chip::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #8b95a2;
+    transition: all 0.3s ease;
+}
+
+.chip.selected::before {
+    background-color: #42e17a;
+}
+
+.chip.selected {
+    background-color: #d3eed5;
+}
+
+.savebtn {
+    background-color: #2015b8;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+
+/* USER CHIPS */
+.user_chip_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border-radius: 6px;
+    background-color: #fafafa;
+    max-height: 68px;
+    overflow-y: scroll;
+}
+
+.user_chip {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+    width: fit-content;
+}
+
+.user_chip:hover {
+    background-color: #cdcdcd;
+}
+
+.user_chip-selected {
+    background-color: #e14242;
+    color: #bab4b4;
+}
+
+.user_chip::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: #8b95a2;
+    transition: all 0.3s ease;
+}
+
+.user_chip.selected::before {
+    background-color: #e14242;
+}
+
+.user_chip.selected {
+    background-color: #d3eed5;
+}
+
+.inline-nav {
+    display: flex;
+    flex-direction: row;
+}

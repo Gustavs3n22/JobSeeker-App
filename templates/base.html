@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/base.css">
+    <title>Главная страница</title>
+</head>
+<body>
+    <div class="navigation">
+    <a class="nav-btn" href="/recommend"><p>Рекомендации</p></a>
+    <a class="nav-btn" href="/login"><p>Войти</p></a>
+    <a class="nav-btn" href="/register"><p>Регистрация</p></a>
+    <a class="nav-btn" href="/profile"><p>Профиль</p></a>
+    </div>
+    <div class="stats">
+    <div class="stat">
+        <h1 class="stat__num">{{ dashboard.vacancies }}</h1>
+        <h1 class="stat__label">вакансий</h1>
+    </div>
+
+    <div class="stat">
+        <h1 class="stat__num">{{ dashboard.skills }}</h1>
+        <h1 class="stat__label">навыков</h1>
+    </div>
+
+    <div class="stat">
+        <h1 class="stat__num">{{ dashboard.companies }}</h1>
+        <h1 class="stat__label">компаний</h1>
+    </div>
+
+    <div class="stat">
+        <h1 class="stat__num">{{ dashboard.users }}</h1>
+        <h1 class="stat__label">пользователей</h1>
+    </div>
+
+    <div class="stat stat--wide">
+        <h1 class="stat__num">~{{ dashboard.ratio }}</h1>
+        <h1 class="stat__label">вакансий на работодателя</h1>
+    </div>
+    </div>
+
+    <form action="/parse" method="get">
+        <button type="submit" class="parsebtn">Набрать данные заново</button>
+    </form>
+</body>
+</html>

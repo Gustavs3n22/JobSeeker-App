@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рекомендации</title>
+</head>
+<body>
+    <div class="subcontainer">
+        <div class="title-row">
+            <h1>Рекомендации</h1>
+            <div class="navigation">
+                <a class="nav-btn" href="/"><p>Назад на главную страницу</p></a>
+                <a class="nav-btn" href="/profile"><p>Изменить профиль</p></a>
+            </div>
+        </div>
+    </div>
+    {% if recommendations %}
+        {% for rec in recommendations %}
+            <div style="margin:20px 0;padding:15px;border:1px solid #ccc;">
+                <h3>{{ rec.rank }}. <a href="{{ rec.url }}">{{ rec.title }}</a></h3>
+                <p><b>Компания:</b> {{ rec.company }}</p>
+                <p><b>Подходит вам на:</b> {{ (rec.similarity*100)|round(1) }}%</p>
+                <p><b>Навыки:</b> {{ rec.skills }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No recommendations. Add data to vacancies + vacancyskills tables.</p>
+    {% endif %}
+</body>
+</html>

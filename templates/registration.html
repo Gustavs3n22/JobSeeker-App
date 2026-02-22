@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/registration.css">
+    <title>Регистрация</title>
+</head>
+<body>
+    <form action="/registration_form" method="post">
+        <div class="container">
+          <div class="subcontainer">
+            <div class="title-row">
+              <h1>Регистрация</h1>
+              <div class="navigation">
+                  <a class="nav-btn" href="/"><p>Назад на главную страницу</p></a>
+                      </button>
+                  </form>
+              </div>
+            </div>
+          </div>
+            {% if form_error %}
+              <div class="form-error">{{ form_error }}</div>
+            {% endif %}
+
+            <p>Пожалуйста, заполните форму для создания аккаунта</p>
+            <hr>
+
+            <label for="username"><b>Имя пользователя</b></label>
+            <input type="text" 
+                   placeholder="Не используйте своё настоящее имя" 
+                   name="username" 
+                   id="username" 
+                   value="{{ username | default('') }}" 
+                   minlength="5"
+                   required>
+
+            <label for="psw"><b>Пароль</b></label>
+            <input type="password" 
+                   placeholder="Пароль" 
+                   name="password" 
+                   id="psw" 
+                   minlength="5"
+                   required>
+
+            <label for="psw-repeat"><b>Повторите пароль</b></label>
+            <input type="password" 
+                   placeholder="Повтор пароля" 
+                   name="password_repeat" 
+                   id="psw-repeat" 
+                   minlength="5"
+                   required>
+
+            <hr>
+            <!-- <p class="new-profiles"><em>Новые аккаунты удаляются в начале каждого нового дня по GMT+10</em></p> -->
+            
+            <button type="submit" class="registerbtn">Зарегистрироваться</button>
+        </div>
+
+        <div class="container signin">
+            <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+        </div>
+    </form>
+</body>
+</html>
